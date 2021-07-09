@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "commit": "cz"
   },
   "husky": {
@@ -21,7 +22,10 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "lint-staged": "^10.5.4"
+    "lint-staged": "^10.5.4",
+    "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
