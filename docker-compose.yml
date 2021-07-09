@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  database: 
+    image: postgres
+    container_name: database_vuttr
+    restart: always
+    ports: 
+      - 5454:5454
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=vuttr
+    volumes:
+      - pgdata:/data/postgres
+    command: -p 5454
+ 
+volumes:
+  pgdata:
+    driver: local
