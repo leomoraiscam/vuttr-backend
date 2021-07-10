@@ -1,3 +1,4 @@
+import AppError from '../../../shared/errors/AppError';
 import FakeToolRepository from '../repositories/fakes/FakeToolRepository';
 import CreateToolService from './CreateToolService';
 
@@ -36,6 +37,6 @@ describe('Create Tools', () => {
         tags: ['Backend', 'Cloud'],
         title: 'Node',
       })
-    ).rejects.toThrow();
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
