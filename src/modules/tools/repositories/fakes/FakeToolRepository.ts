@@ -11,6 +11,10 @@ class FakeCreateToolRepository implements IToolRepository {
     return this.tools;
   }
 
+  public async findById(id: string): Promise<Tool> {
+    return this.tools.find((tool) => tool.id === id);
+  }
+
   public async findByTags(tag: string): Promise<Tool[]> {
     const tagFilter = this.tools.filter((tool) => {
       return tool.tags.includes(tag);
@@ -42,6 +46,12 @@ class FakeCreateToolRepository implements IToolRepository {
     this.tools.push(tool);
 
     return tool;
+  }
+
+  public async remove(id: string): Promise<void> {
+    const toolIndex = this.tools.findIndex((tool) => tool.id === id);
+
+    this.tools.splice(toolIndex, 1);
   }
 }
 
