@@ -1,4 +1,4 @@
-import { EntityRepository, Repository, getRepository } from 'typeorm';
+import { EntityRepository, Repository, getRepository, ILike } from 'typeorm';
 
 import ICreateToolDTO from '../../../dtos/ICreateToolsDTO';
 import IToolRepository from '../../../repositories/IToolsRepository';
@@ -19,13 +19,11 @@ class ToolRepository implements IToolRepository {
   }
 
   public async findByTags(tag: string): Promise<Tool[]> {
-    const findTool = await this.ormRepository.find();
-
-    const tagFilter = findTool.filter((tool) => {
-      return tool.tags.includes(tag);
+    return this.ormRepository.find({
+      where: {
+        tags: ILike(`%${tag}%`),
+      },
     });
-
-    return tagFilter;
   }
 
   public async create({

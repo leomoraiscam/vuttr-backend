@@ -7,6 +7,6 @@ const toolsController = new ToolsController();
 
 toolsRouter.get('/', toolsController.list);
 toolsRouter.post('/', toolsController.create);
-toolsRouter.post('/', toolsController.delete);
+toolsRouter.delete('/:id', toolsController.delete);
 
 export default toolsRouter;
