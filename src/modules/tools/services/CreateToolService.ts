@@ -6,7 +6,7 @@ import Tool from '../infra/typeorm/entities/Tool';
 import IToolRepository from '../repositories/IToolsRepository';
 
 @injectable()
-class CreateTollService {
+class CreateToolService {
   constructor(
     @inject('ToolRepository')
     private toolsRepository: IToolRepository
@@ -35,4 +35,4 @@ class CreateTollService {
   }
 }
 
-export default CreateTollService;
+export default CreateToolService;
