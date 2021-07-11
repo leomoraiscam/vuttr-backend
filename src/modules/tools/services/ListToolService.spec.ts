@@ -26,7 +26,7 @@ describe('List Tools', () => {
     expect(tools.tags).toEqual(['Backend', 'Cloud']);
   });
 
-  it.only('should be able list a tools without tags', async () => {
+  it('should be able list a tools without tags', async () => {
     const primaryTool = await fakeToolRepository.create({
       description: 'descrisção',
       link: 'http://localhost:3000',
