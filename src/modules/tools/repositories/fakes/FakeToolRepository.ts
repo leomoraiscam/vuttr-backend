@@ -7,6 +7,18 @@ import IToolRepository from '../IToolsRepository';
 class FakeCreateToolRepository implements IToolRepository {
   private tools: Tool[] = [];
 
+  public async list(): Promise<Tool[]> {
+    return this.tools;
+  }
+
+  public async findByTags(tag: string): Promise<Tool[]> {
+    const tagFilter = this.tools.filter((tool) => {
+      return tool.tags.includes(tag);
+    });
+
+    return tagFilter;
+  }
+
   public async findByTitle(title: string): Promise<Tool | undefined> {
     return this.tools.find((tool) => tool.title === title);
   }
