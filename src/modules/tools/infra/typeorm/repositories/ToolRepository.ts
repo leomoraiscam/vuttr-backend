@@ -12,6 +12,22 @@ class ToolRepository implements IToolRepository {
     this.ormRepository = getRepository(Tool);
   }
 
+  public async findById(id: string): Promise<Tool | undefined> {
+    const tool = await this.ormRepository.findOne(id);
+
+    return tool;
+  }
+
+  public async findByTags(tag: string): Promise<Tool[]> {
+    const findTool = await this.ormRepository.find();
+
+    const tagFilter = findTool.filter((tool) => {
+      return tool.tags.includes(tag);
+    });
+
+    return tagFilter;
+  }
+
   public async create({
     description,
     title,
@@ -36,6 +52,16 @@ class ToolRepository implements IToolRepository {
         title,
       },
     });
+  }
+
+  public async remove(id: string): Promise<void> {
+    await this.ormRepository.delete(id);
+  }
+
+  public async list(): Promise<Tool[]> {
+    const tools = await this.ormRepository.find();
+
+    return tools;
   }
 }
 
